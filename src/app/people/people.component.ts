@@ -31,14 +31,28 @@ export class PeopleComponent implements OnInit {
       course: aCourse.value,
       age: anAge.value
     }
-    this._peopleService.createPeople(newPeople);
+    const peoplecreated = this._peopleService.createPeople(newPeople);
+    console.log(peoplecreated.then((peoplecreated)=>{
+      this.allPeople.push(peoplecreated)
+    }));
   }
 
   deleteAPeople(id){
     this._peopleService.deletePeople(id.value).subscribe(
-      () => console.log(`People with Id deleted`),
+      (data) => {
+      this.allPeople.push(data.person)
+      let newRows = [...this.allPeople];
+      const foundIndex = newRows.findIndex((a) => {
+        return a._id === data.person._id
+    })
+    console.log("I'm in people.component");
+    newRows.splice(foundIndex, 1);
+    console.log(foundIndex)
+      console.log(`People with Id deleted`),
       (err) => console.log(err)
+      }
     );
+    
   }
 
 
@@ -62,7 +76,8 @@ export class PeopleComponent implements OnInit {
     console.log("I'm in people.component");
     console.log(newPeople);
       this._peopleService.updatePeople(newPeople).subscribe(
-        () => {}
+        () => {
+        }
       );
   }
 

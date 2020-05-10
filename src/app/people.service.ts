@@ -17,14 +17,19 @@ export class PeopleService {
   }
 
   createPeople(newPeople){
-    this.http.post(this._url, newPeople).toPromise().then((data:any) => {
-      console.log(data);
+    return this.http.post(this._url, newPeople).toPromise().then((data:any) => {
+      console.log("I'm in people.service")
+      console.log(data.person);
+      return data.person;
       //this.json = JSON.stringify(Data.json);
     });
   }
 
-  deletePeople(id): Observable<void>{
-    return this.http.delete<void>(`${this._url}/${id}`);
+  deletePeople(id): Observable<any>{
+    const returnedPeople = this.http.delete<any>(`${this._url}/${id}`);
+    console.log("I'm in people.service")
+    console.log(returnedPeople)
+    return returnedPeople;
   }
 
   getOnePerson(id): Observable<any>{
