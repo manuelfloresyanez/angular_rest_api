@@ -1,0 +1,36 @@
+<!-- It will List all the People -->
+<ul *ngFor="let a of allPeople">
+    <li>_id: {{a._id}}, name: {{a.name}}, lastName: {{a.lastName}}, rut: {{a.rut}}, course: {{a.course}}</li>
+</ul>
+
+
+
+<!-- It will List one Person -->
+<input #anId type="text"/>
+<button (click)="getPerson(anId)">Find one Person</button>
+<ul>
+    <li>_id: {{person._id}}, name: {{person.name}}, lastName: {{person.lastName}}, rut: {{person.rut}}, course: {{person.course}}</li>
+</ul>
+
+<!-- The following will create a People -->
+<input #aName type="text"/>
+<input #alastName type="text">
+<input #aRut type="text"/>
+<input #aCourse type="text"/>
+<input #anAge type="number"/>
+<button (click)="createPeople(aName, alastName, aRut, aCourse, anAge)">Create a Person</button>
+
+<!-- The following will delete a Person-->
+<input #anId type="text"/>
+<button (click)="deleteAPeople(anId)">Delete a Person</button>
+
+
+
+<!-- The following will update a People -->
+<input #updateId type="text"/>
+<input #updateName type="text"/>
+<input #updatelastName type="text">
+<input #updateRut type="text"/>
+<input #updateCourse type="text"/>
+<input #updateAge type="number"/>
+<button (click)="updateOne(updateId, updateName, updatelastName, updateRut, updateCourse, updateAge)">Update a Person</button>
